@@ -16,6 +16,8 @@ class Login
   end
   
   def launch
+    @logged_in = false
+
     window('Login') {
       margined true
       

@@ -15,7 +15,7 @@ Glimmer::LibUI.timer(1) do
   elsif OS.mac?
     cpu_percentage_value = `ps -A -o %cpu | awk '{s+=$1} END {print s}'`.to_i
   elsif OS.linux?
-    stats = `top -n 1`
+    stats = `LC_ALL=C top -n 1`
     idle_percentage = stats.split("\n")[2].match(/ni,.* (.*) .*id/)[1]
     cpu_percentage_value = (BigDecimal(100) - BigDecimal(idle_percentage)).to_i
   end

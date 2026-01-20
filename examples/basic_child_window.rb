@@ -8,10 +8,12 @@ window('Main Window') { |main_window|
       window('Child Window') { |child_window|
         on_focus_changed do
           puts 'Child window is focused' if child_window.focused?
+          $stdout.flush
         end
         
         on_closing do
           puts 'Child window is closing'
+          $stdout.flush
         end
       }.show
     end
@@ -19,9 +21,11 @@ window('Main Window') { |main_window|
   
   on_focus_changed do
     puts 'Main window is focused' if main_window.focused?
+    $stdout.flush
   end
   
   on_closing do
     puts 'Main window is closing'
+    $stdout.flush
   end
 }.show

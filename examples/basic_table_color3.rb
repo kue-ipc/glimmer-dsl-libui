@@ -23,13 +23,15 @@ data = [
 ]
 
 window('Animals', 500, 200) {
-  table {
-    text_color_column('Animal')
-    text_color_column('Sound')
-    checkbox_text_color_column('Description')
-    image_text_color_column('GUI')
-    background_color_column('Mammal')
+  horizontal_box {
+    table {
+      text_color_column('Animal')
+      text_color_column('Sound')
+      checkbox_text_color_column('Description')
+      image_text_color_column('GUI')
+      background_color_column('Mammal')
 
-    cell_rows data
+      cell_rows data
+    }
   }
 }.show

@@ -10,6 +10,8 @@ class Login
   end
   
   def launch
+    self.logged_in = false
+
     window('Login') {
       margined true
       

@@ -20,12 +20,14 @@ rescue StandardError => e
 end
 
 window('The Red Turtle', 670, 350) {
-  table {
-    image_text_column('image/number')
-    image_text_column('image/number (editable)') {
-      editable true
+  horizontal_box {
+    table {
+      image_text_column('image/number')
+      image_text_column('image/number (editable)') {
+        editable true
+      }
+      
+      cell_rows IMAGE_ROWS
     }
-    
-    cell_rows IMAGE_ROWS
   }
 }.show
