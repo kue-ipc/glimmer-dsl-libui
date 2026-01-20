@@ -18,6 +18,8 @@ gem 'chunky_png', '~> 1.4.0'
 gem 'equalizer', '0.0.11'
 gem 'rouge', '>= 3.26.0', '< 4.0.0'
 gem 'text-table', '>= 1.2.4', '< 2.0.0'
+gem 'csv'
+gem 'logger'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
