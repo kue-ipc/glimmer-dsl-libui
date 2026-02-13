@@ -55,7 +55,7 @@ class LazyTable
   include Glimmer::LibUI::Application
              
   body {
-    window("100,000 Lazy Loaded Contacts", 600, 700) {
+    window("1,000,000 Lazy Loaded Contacts", 600, 700) {
       margined true
       
       horizontal_box {
@@ -66,7 +66,7 @@ class LazyTable
           text_column('City')
           text_column('State')
           
-          cell_rows ContactGenerator.new(100_000)
+          cell_rows ContactGenerator.new(1_000_000)
         }
       }
     }

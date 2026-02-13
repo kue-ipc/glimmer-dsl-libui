@@ -30,7 +30,7 @@ class LazyTable
              'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
              
   before_body do
-    contact_count = 100_000
+    contact_count = 1_000_000
     # Make sure to pass Enumerator::Lazy constructor size (2nd) argument as it gets used by Glimmer DSL for LibUI
     # to determine the number of rows in the table before generating all its data
     @contacts = Enumerator::Lazy.new(contact_count.times, contact_count) do |yielder, index|
@@ -48,7 +48,7 @@ class LazyTable
   end
   
   body {
-    window("100,000 Lazy Loaded Contacts", 600, 700) {
+    window("1,000,000 Lazy Loaded Contacts", 600, 700) {
       margined true
       
       horizontal_box {
