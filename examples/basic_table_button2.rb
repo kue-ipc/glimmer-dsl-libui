@@ -2,6 +2,8 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 data = [
@@ -27,7 +29,6 @@ window('Animal sounds', 400, 200) {
       
       on_changed do |row, type, row_data|
         puts "Row #{row} #{type}: #{row_data}"
-        $stdout.flush
       end
     }
   }

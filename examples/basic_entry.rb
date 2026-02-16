@@ -2,6 +2,8 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 class BasicEntry
   include Glimmer
   
@@ -12,7 +14,7 @@ class BasicEntry
       horizontal_box {
         entry {
           # stretchy true # Smart default option for appending to horizontal_box
-          text <=> [self, :entry_text, after_write: ->(text) {puts text; $stdout.flush}] # bidirectional data-binding between text property and entry_text attribute, printing after write to model.
+          text <=> [self, :entry_text, after_write: ->(text) {puts text}] # bidirectional data-binding between text property and entry_text attribute, printing after write to model.
         }
         
         button('Button') {

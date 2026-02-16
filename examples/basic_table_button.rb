@@ -1,5 +1,7 @@
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 class BasicTableButton
   BasicAnimal = Struct.new(:name, :sound)
   
@@ -46,7 +48,6 @@ class BasicTableButton
           # explicit unidirectional data-binding of table cell_rows to self.animals
           on_changed do |row, type, row_data|
             puts "Row #{row} #{type}: #{row_data}"
-            $stdout.flush
           end
         }
       }
