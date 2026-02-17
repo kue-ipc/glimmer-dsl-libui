@@ -5,13 +5,15 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 IMAGE_ROWS = []
 
 50.times do |i|
   url = format('https://www.ghibli.jp/gallery/thumb-redturtle%03d.png', (i + 1))
-  puts "Processing Image: #{url}"; $stdout.flush # for Windows
+  puts "Processing Image: #{url}"
   IMAGE_ROWS << [image(url)] # array of one column cell
 rescue StandardError => e
   warn url, e.message

@@ -6,9 +6,11 @@
 require 'glimmer-dsl-libui'
 require 'chunky_png'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
-puts 'Parsing image...'; $stdout.flush
+puts 'Parsing image...'
 
 f = File.open(File.expand_path('../icons/glimmer.png', __dir__))
 canvas = ChunkyPNG::Canvas.from_io(f)
@@ -20,7 +22,7 @@ height = canvas.height
 puts "Image width: #{width}"
 puts "Image height: #{height}"
 
-puts 'Parsing colors...'; $stdout.flush
+puts 'Parsing colors...'
 
 color_maps = height.times.map do |y|
   width.times.map do |x|
@@ -31,9 +33,9 @@ color_maps = height.times.map do |y|
     {x: x, y: y, color: {r: r, g: g, b: b, a: a}}
   end
 end.flatten
-puts "#{color_maps.size} pixels to render..."; $stdout.flush
+puts "#{color_maps.size} pixels to render..."
 
-puts 'Parsing shapes...'; $stdout.flush
+puts 'Parsing shapes...'
 
 shape_maps = []
 original_color_maps = color_maps.dup
@@ -54,9 +56,9 @@ color_maps.each do |color_map|
     @rectangle_start_x = color_map[:x] == width - 1 ? 0 : color_map[:x] + 1
   end
 end
-puts "#{shape_maps.size} shapes to render..."; $stdout.flush
+puts "#{shape_maps.size} shapes to render..."
 
-puts 'Rendering image...'; $stdout.flush
+puts 'Rendering image...'
 
 window('Basic Image', 96, 96) {
   area {

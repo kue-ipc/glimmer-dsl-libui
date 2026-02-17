@@ -1,5 +1,7 @@
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 window('Main Window') { |main_window|

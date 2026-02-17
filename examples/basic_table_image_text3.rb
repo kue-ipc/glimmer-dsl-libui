@@ -7,6 +7,8 @@ require 'glimmer-dsl-libui'
 require 'chunky_png'
 require 'open-uri'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 IMAGE_ROWS = []
@@ -14,7 +16,6 @@ IMAGE_ROWS = []
 5.times do |i|
   url = format('https://www.ghibli.jp/gallery/thumb-redturtle%03d.png', (i + 1))
   puts "Processing Image: #{url}"
-  $stdout.flush # for Windows
   f = URI.open(url)
   canvas = ChunkyPNG::Canvas.from_io(f)
   f.close
@@ -31,12 +32,14 @@ rescue StandardError => e
 end
 
 window('The Red Turtle', 670, 350) {
-  table {
-    image_text_column('image/number')
-    image_text_column('image/number (editable)') {
-      editable true
+  horizontal_box {
+    table {
+      image_text_column('image/number')
+      image_text_column('image/number (editable)') {
+        editable true
+      }
+      
+      cell_rows IMAGE_ROWS
     }
-    
-    cell_rows IMAGE_ROWS
   }
 }.show

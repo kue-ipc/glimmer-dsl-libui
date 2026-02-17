@@ -2,6 +2,8 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 window('Basic Entry', 300, 50) {
@@ -11,7 +13,6 @@ window('Basic Entry', 300, 50) {
     
       on_changed do
         puts e.text
-        $stdout.flush # For Windows
       end
     }
     

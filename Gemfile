@@ -18,12 +18,14 @@ gem 'chunky_png', '~> 1.4.0'
 gem 'equalizer', '0.0.11'
 gem 'rouge', '>= 3.26.0', '< 4.0.0'
 gem 'text-table', '>= 1.2.4', '< 2.0.0'
+gem 'csv'
+gem 'logger'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem 'juwelier', '>= 2.4.9', '< 3.0.0'
-  gem 'stringio', '3.0.1'
+  gem 'stringio', '~> 3.0'
   gem 'psych', '4.0.3'
   gem 'json', '2.6.1'
   gem 'rspec', '~> 3.0'

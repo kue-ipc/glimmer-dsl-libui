@@ -2,6 +2,8 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 data = [
@@ -13,20 +15,21 @@ data = [
 ]
 
 window('Animal sounds', 400, 200) {
-  table {
-    text_column('Animal')
-    text_column('Description')
-    button_column('Action') {
-      on_clicked do |row|
-        data.delete_at(row) # automatically deletes actual table row due to implicit data-binding
+  horizontal_box {
+    table {
+      text_column('Animal')
+      text_column('Description')
+      button_column('Action') {
+        on_clicked do |row|
+          data.delete_at(row) # automatically deletes actual table row due to implicit data-binding
+        end
+      }
+      
+      cell_rows data # implicit data-binding
+      
+      on_changed do |row, type, row_data|
+        puts "Row #{row} #{type}: #{row_data}"
       end
     }
-
-    cell_rows data # implicit data-binding
-    
-    on_changed do |row, type, row_data|
-      puts "Row #{row} #{type}: #{row_data}"
-      $stdout.flush
-    end
   }
 }.show

@@ -53,14 +53,16 @@ class LazyTable
     window("1,000,000 Lazy Loaded Contacts", 600, 700) {
       margined true
       
-      table {
-        text_column('Name')
-        text_column('Email')
-        text_column('Phone')
-        text_column('City')
-        text_column('State')
-        
-        cell_rows @contacts
+      horizontal_box {
+        table {
+          text_column('Name')
+          text_column('Email')
+          text_column('Phone')
+          text_column('City')
+          text_column('State')
+          
+          cell_rows @contacts
+        }
       }
     }
   }

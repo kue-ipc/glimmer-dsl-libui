@@ -2,6 +2,8 @@
 
 require 'glimmer-dsl-libui'
 
+$stdout.sync = true # needed on platforms that don't flush stdout automatically, like Windows, and some Linux environments
+
 include Glimmer
 
 menu('File') {
@@ -9,7 +11,6 @@ menu('File') {
     on_clicked do
       file = open_file
       puts file unless file.nil?
-      $stdout.flush # for Windows
     end
   }
 
@@ -17,7 +18,6 @@ menu('File') {
     on_clicked do
       folder = open_folder
       puts folder unless folder.nil?
-      $stdout.flush # for Windows
     end
   }
 
@@ -25,7 +25,6 @@ menu('File') {
     on_clicked do
       file = save_file
       puts file unless file.nil?
-      $stdout.flush # for Windows
     end
   }
   
@@ -108,7 +107,6 @@ MAIN_WINDOW = window('Control Gallery', 600, 500) {
 
               on_changed do |s|
                 puts "New Spinbox value: #{s.value}"
-                $stdout.flush # for Windows
               end
             }
 
@@ -118,7 +116,6 @@ MAIN_WINDOW = window('Control Gallery', 600, 500) {
               on_changed do |s|
                 v = s.value
                 puts "New Slider value: #{v}"
-                $stdout.flush # for Windows
                 @progress_bar.value = v
               end
             }
@@ -137,7 +134,6 @@ MAIN_WINDOW = window('Control Gallery', 600, 500) {
 
               on_selected do |c|
                 puts "New combobox selection: #{c.selected}"
-                $stdout.flush # for Windows
               end
             }
 
@@ -160,7 +156,6 @@ MAIN_WINDOW = window('Control Gallery', 600, 500) {
 
                 on_changed do |e|
                   puts "Current textbox data: '#{e.text}'"
-                  $stdout.flush # for Windows
                 end
               }
             }
